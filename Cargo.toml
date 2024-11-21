@@ -8,7 +8,8 @@ dev = ["bevy/dynamic_linking"]
 
 [dependencies]
 bevy = { version = "0.14.2" }
-log = { version = "*", features = ["max_level_debug", "release_max_level_warn"] }
+bevy_mod_picking = "0.20.1"
+#log = { version = "*", features = ["max_level_debug", "release_max_level_warn"] }
 
 [profile.dev]
 opt-level = 1

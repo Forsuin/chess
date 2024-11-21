@@ -3,9 +3,11 @@ use bevy::{
     prelude::*,
 };
 
+use bevy_mod_picking::prelude::*;
+
 mod board;
 use crate::board::*;
-use crate::pieces::setup_pieces;
+use crate::pieces::*;
 
 mod pieces;
 
@@ -23,12 +25,15 @@ fn main() {
             }),
             LogDiagnosticsPlugin::default(),
             FrameTimeDiagnosticsPlugin,
+            DefaultPickingPlugins,
         ))
-        .add_systems(Startup, (setup, setup_board, setup_pieces))
+        .add_plugins(BoardPlugin)
+        .add_plugins(PiecesPlugin)
+        .add_systems(Startup, setup)
         .run();
 }
 
-fn setup(mut commands:Commands) {
+fn setup(mut commands: Commands) {
     // Camera
     commands.spawn(Camera3dBundle {
         transform: Transform::from_matrix(Mat4::from_rotation_translation(
